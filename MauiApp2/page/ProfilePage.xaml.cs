@@ -52,13 +52,13 @@ namespace MauiApp2.page
         private async void OnScheduleClicked(object sender, EventArgs e)
         {
             // Navigate to schedule page
-            // await Navigation.PushAsync(new SchedulePage());
+            await Navigation.PushAsync(new RegisterInformation());
         }
 
         private async void OnHomeClicked(object sender, EventArgs e)
         {
             // Navigate to home page
-            // await Navigation.PushAsync(new HomePage());
+            await Navigation.PushAsync(new RegistrationView());
         }
     }
 }

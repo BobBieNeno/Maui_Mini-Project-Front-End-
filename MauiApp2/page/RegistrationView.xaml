@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.page.RegistrationView"
+             Title="ประวัติการลงทะเบียนเรียน">
+    
+    <Grid RowDefinitions="Auto,Auto,*" Padding="15">
+        <VerticalStackLayout Grid.Row="0" Spacing="10">
+            <Label 
+                Text="ประวัติการลงทะเบียนเรียน"
+                FontSize="24"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="#333333"/>
+            
+            <Picker 
+                x:Name="SemesterPicker"
+                Title="เลือกภาคการศึกษา"
+                TitleColor="#666666"
+                BackgroundColor="#F5F5F5"
+                FontSize="16"
+                Margin="0,10"
+                SelectedIndexChanged="OnSemesterPickerSelectedIndexChanged">
+                <Picker.Items>
+                    <x:String>1/2565</x:String>
+                    <x:String>2/2565</x:String>
+                    <x:String>3/2565</x:String>
+                    <x:String>1/2566</x:String>
+                    <x:String>2/2566</x:String>
+                    <x:String>3/2566</x:String>
+                </Picker.Items>
+            </Picker>
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Label x:Name="TotalCreditsLabel" 
+                   Text="รวมหน่วยกิต: 0" 
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   HorizontalOptions="End"/>
+        </Grid>
+
+        <CollectionView Grid.Row="2" 
+                        x:Name="PastRegistrationsCollectionView"
+                        EmptyView="ไม่มีข้อมูลการลงทะเบียน">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="#E0E0E0" 
+                           BackgroundColor="White"
+                           Padding="15"
+                           Margin="0,0,0,10"
+                           CornerRadius="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Grid.Column="0" Spacing="5">
+                                <Label Text="{Binding CourseCode}" 
+                                       FontAttributes="Bold"
+                                       FontSize="16"/>
+                                <Label Text="{Binding CourseName}"/>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="หน่วยกิต: " FontAttributes="Bold"/>
+                                            <Span Text="{Binding Credits}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </VerticalStackLayout>
+                            
+                            <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                <Label Text="{Binding SectionNumber}"
+                                       HorizontalOptions="End"
+                                       FontSize="14"
+                                       TextColor="#666666"/>
+                                <Label Text="{Binding Grade}"
+                                       HorizontalOptions="End"
+                                       FontAttributes="Bold"
+                                       FontSize="16"
+                                       TextColor="{Binding GradeColor}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

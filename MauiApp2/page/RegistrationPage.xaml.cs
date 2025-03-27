@@ -106,10 +106,10 @@ namespace MauiApp2.page
         RegisteredCourses.Remove(course);
 
         // ตรวจสอบว่าคอร์สที่ถูกลบเคยอยู่ในผลลัพธ์การค้นหาหรือไม่
-        if (SearchResults.Any(c => c.CourseCode == course.CourseCode))
-        {
+        // if (SearchResults.Any(c => c.CourseCode == course.CourseCode))
+        // {
             SearchResults.Add(course);
-        }
+        // }
     }
 }
 

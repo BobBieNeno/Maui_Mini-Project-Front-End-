@@ -58,11 +58,23 @@ build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.page.ProfilePage.
 build_metadata.AdditionalFiles.TargetPath = page\ProfilePage.xaml
 build_metadata.AdditionalFiles.RelativePath = page\ProfilePage.xaml
 
+[D:/APP2/MauiApp2/MauiApp2/page/RegisterInformation.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.page.RegisterInformation.xaml
+build_metadata.AdditionalFiles.TargetPath = page\RegisterInformation.xaml
+build_metadata.AdditionalFiles.RelativePath = page\RegisterInformation.xaml
+
 [D:/APP2/MauiApp2/MauiApp2/page/RegistrationPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.page.RegistrationPage.xaml
 build_metadata.AdditionalFiles.TargetPath = page\RegistrationPage.xaml
 build_metadata.AdditionalFiles.RelativePath = page\RegistrationPage.xaml
+
+[D:/APP2/MauiApp2/MauiApp2/page/RegistrationView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = MauiApp2.page.RegistrationView.xaml
+build_metadata.AdditionalFiles.TargetPath = page\RegistrationView.xaml
+build_metadata.AdditionalFiles.RelativePath = page\RegistrationView.xaml
 
 [D:/APP2/MauiApp2/MauiApp2/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml

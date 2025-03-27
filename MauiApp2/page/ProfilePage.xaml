@@ -18,7 +18,7 @@
                    VerticalOptions="Center" 
                    HorizontalOptions="Center"/>
             
-            <ImageButton Grid.Column="2" 
+            <!-- <ImageButton Grid.Column="2" 
                          Source="bell_icon.png" 
                          WidthRequest="40" 
                          HeightRequest="40" 
@@ -29,7 +29,7 @@
                          Source="settings_icon.png" 
                          WidthRequest="40" 
                          HeightRequest="40" 
-                         Clicked="OnSettingsClicked"/>
+                         Clicked="OnSettingsClicked"/> -->
         </Grid>
 
         <!-- Profile Content -->
@@ -82,6 +82,7 @@
                 </Frame>
 
                 <!-- Contact Information -->
+
                 <Frame BorderColor="LightGray" Padding="15">
                     <VerticalStackLayout Spacing="10">
                         <Label Text="Contact Information" FontSize="16" FontAttributes="Bold" Margin="0,0,0,10"/>
@@ -89,7 +90,7 @@
                         <StackLayout Orientation="Horizontal" Spacing="10">
                             <Image Source="email_icon.png" WidthRequest="24" HeightRequest="24"/>
                             <Label x:Name="EmailLabel" 
-                                   Text="john.doe@example.com" 
+                                   Text="65011212243@msu.ac.th" 
                                    FontSize="16"/>
                         </StackLayout>
                         
@@ -101,34 +102,88 @@
                         </StackLayout>
                     </VerticalStackLayout>
                 </Frame>
+     <Grid Grid.Row="2" ColumnDefinitions="*,*,*" Margin="0,20,0,0">
+
+                <Frame Grid.Column="0" 
+           BorderColor="LightGray" 
+           BackgroundColor="White" 
+           CornerRadius="15" 
+           Padding="10" 
+           Margin="10,0"
+           HasShadow="True">
+        <Grid>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnScheduleClicked"/>
+            </Grid.GestureRecognizers>
+            
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Image Source="schedule_icon.png" 
+                       WidthRequest="50" 
+                       HeightRequest="50"
+                       Aspect="AspectFit"/>
+                <Label Text="ข้อมูลการลงทะเบียนเรียน" 
+                       FontSize="14" 
+                       HorizontalOptions="Center" 
+                       TextColor="#333333"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Frame>
+    <Frame Grid.Column="1" 
+           BorderColor="LightGray" 
+           BackgroundColor="White" 
+           CornerRadius="15" 
+           Padding="10" 
+           Margin="10,0"
+           HasShadow="True">
+        <Grid>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnViewRegistrationClicked"/>
+            </Grid.GestureRecognizers>
+            
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Image Source="registration_icon.png" 
+                       WidthRequest="50" 
+                       HeightRequest="50"
+                       Aspect="AspectFit"/>
+                <Label Text="การลงทะเบียน" 
+                       FontSize="14" 
+                       HorizontalOptions="Center" 
+                       TextColor="#333333"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Frame>
+    
+    <Frame Grid.Column="2" 
+           BorderColor="LightGray" 
+           BackgroundColor="White" 
+           CornerRadius="15" 
+           Padding="10" 
+           Margin="10,0"
+           HasShadow="True">
+        <Grid>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnHomeClicked"/>
+            </Grid.GestureRecognizers>
+            
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Image Source="home_icon.png" 
+                       WidthRequest="50" 
+                       HeightRequest="50"
+                       Aspect="AspectFit"/>
+                <Label Text="หน้าหลัก" 
+                       FontSize="14" 
+                       HorizontalOptions="Center" 
+                       TextColor="#333333"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Frame>
+</Grid>
+
             </VerticalStackLayout>
         </ScrollView>
 
         <!-- Bottom Navigation -->
-        <Grid Grid.Row="2" ColumnDefinitions="*,*,*" Margin="0,20,0,0">
-            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
-                <ImageButton Source="schedule_icon.png" 
-                             WidthRequest="40" 
-                             HeightRequest="40" 
-                             Clicked="OnScheduleClicked"/>
-                <Label Text="Schedule" FontSize="12" HorizontalOptions="Center"/>
-            </VerticalStackLayout>
-            
-            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
-                <ImageButton Source="registration_icon.png" 
-                             WidthRequest="40" 
-                             HeightRequest="40" 
-                             Clicked="OnViewRegistrationClicked"/>
-                <Label Text="Registration" FontSize="12" HorizontalOptions="Center"/>
-            </VerticalStackLayout>
-            
-            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
-                <ImageButton Source="home_icon.png" 
-                             WidthRequest="40" 
-                             HeightRequest="40" 
-                             Clicked="OnHomeClicked"/>
-                <Label Text="Home" FontSize="12" HorizontalOptions="Center"/>
-            </VerticalStackLayout>
-        </Grid>
+      
+    
     </Grid>
 </ContentPage>

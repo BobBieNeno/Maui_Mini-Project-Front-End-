@@ -14,7 +14,7 @@ namespace MauiApp2.page
             string username = UsernameEntry.Text;
             string password = PasswordEntry.Text;
 
-            if (username == "admin" && password == "password") // Example credentials
+            if (username == "a" && password == "a") // Example credentials
             {
                 await Navigation.PushAsync(new ProfilePage(username)); // Navigate to HomePage
             }
