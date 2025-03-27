@@ -16,7 +16,7 @@ namespace MauiApp2.page
 
             if (username == "admin" && password == "password") // Example credentials
             {
-                await Navigation.PushAsync(new HomePage()); // Navigate to HomePage
+                await Navigation.PushAsync(new ProfilePage(username)); // Navigate to HomePage
             }
             else
             {

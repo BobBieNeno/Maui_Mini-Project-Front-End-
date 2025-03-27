@@ -1,0 +1,32 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.page.RegistrationPage"
+             Title="Registration">
+    <VerticalStackLayout Padding="20">
+        <Label Text="Registered Courses" FontSize="24" HorizontalOptions="Center"/>
+        <CollectionView x:Name="RegisteredCoursesView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding CourseName}" FontSize="18"/>
+                        <Button Text="Drop" Clicked="OnDropCourseClicked"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Entry x:Name="CourseSearchEntry" Placeholder="Search Course"/>
+        <Button Text="Search" Clicked="OnSearchClicked"/>
+
+        <CollectionView x:Name="SearchResultsView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding CourseName}" FontSize="18"/>
+                        <Button Text="Register" Clicked="OnRegisterClicked"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

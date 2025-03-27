@@ -1,0 +1,16 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp2.page.ProfilePage"
+             Title="Profile">
+    <VerticalStackLayout Padding="20">
+        <Label Text="Profile" FontSize="24" HorizontalOptions="Center"/>
+        
+        <Label Text="Name: Aekkachai Saiyan" FontSize="18"/>
+        <Label x:Name="NameLabel" FontSize="18" FontAttributes="Bold"/>
+        
+        <Label Text="Email: " FontSize="18"/>
+        <Label x:Name="EmailLabel" FontSize="18" FontAttributes="Bold"/>
+        
+        <Button Text="View Registration" Clicked="OnViewRegistrationClicked"/>
+    </VerticalStackLayout>
+</ContentPage>

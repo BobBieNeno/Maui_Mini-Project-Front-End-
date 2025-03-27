@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp2.page.LoginPage"
              Title="Login">
-    <VerticalStackLayout Padding="20" Spacing="10">
+             <Grid>
+                <Border  WidthRequest="400"
+                    HeightRequest="500"
+                    StrokeShape="RoundRectangle 20,20,20,20">
+    <VerticalStackLayout Padding="20" Spacing="15">
         
         <Label Text="Login" FontSize="24" HorizontalOptions="Center" />
-
+        <Image Source="https://img.freepik.com/free-vector/user-blue-gradient_78370-4692.jpg?t=st=1743005131~exp=1743008731~hmac=49765776c9bf5827f70306c68dac5f0069776637c59d17471d0a8ead1aa3efb4"
+               Aspect="AspectFill" WidthRequest="100" HeightRequest="100" Margin="20"></Image>
         <Entry x:Name="UsernameEntry" Placeholder="Username" />
 
         <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
@@ -16,4 +21,6 @@
         <Label x:Name="ErrorMessage" TextColor="Red" IsVisible="False" />
         
     </VerticalStackLayout>
+    </Border>
+    </Grid>
 </ContentPage>
