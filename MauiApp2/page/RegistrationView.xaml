@@ -6,12 +6,25 @@
     
     <Grid RowDefinitions="Auto,Auto,*" Padding="15">
         <VerticalStackLayout Grid.Row="0" Spacing="10">
-            <Label 
-                Text="ประวัติการลงทะเบียนเรียน"
-                FontSize="24"
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                TextColor="#333333"/>
+            <!-- <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto" Margin="0,0,0,20"></Grid> -->
+<HorizontalStackLayout Grid.Row="0" Spacing="10" VerticalOptions="Center">
+    <ImageButton 
+        Source="back_icon.png"
+        WidthRequest="40"
+        HeightRequest="40"
+        BackgroundColor="#FFD7D7D7"
+        Clicked="ImageButton_Clicked"
+        VerticalOptions="Center"
+        HorizontalOptions="Start"/>
+    
+    <Label 
+        Text="ประวัติการลงทะเบียนเรียน"
+        FontSize="24"
+        FontAttributes="Bold"
+        HorizontalOptions="Center"
+        VerticalOptions="Center"
+        TextColor="#333333"/>
+</HorizontalStackLayout>
             
             <Picker 
                 x:Name="SemesterPicker"

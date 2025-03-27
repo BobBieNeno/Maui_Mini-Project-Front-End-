@@ -87,13 +87,9 @@ namespace MauiApp2.page
             TotalCreditsLabel.Text = $"รวมหน่วยกิต: {totalCredits}";
         }
 
-        private void ImageButton_Clicked(object sender, EventArgs e)
+        private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-        }
-
-        private async Task ImageButton_ClickedAsync(object sender, EventArgs e)
-        {
-             await Navigation.PopAsync();
+              await Navigation.PopAsync();
         }
     }
     
