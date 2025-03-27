@@ -1,16 +1,134 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp2.page.ProfilePage"
-             Title="Profile">
-    <VerticalStackLayout Padding="20">
-        <Label Text="Profile" FontSize="24" HorizontalOptions="Center"/>
-        
-        <Label Text="Name: Aekkachai Saiyan" FontSize="18"/>
-        <Label x:Name="NameLabel" FontSize="18" FontAttributes="Bold"/>
-        
-        <Label Text="Email: " FontSize="18"/>
-        <Label x:Name="EmailLabel" FontSize="18" FontAttributes="Bold"/>
-        
-        <Button Text="View Registration" Clicked="OnViewRegistrationClicked"/>
-    </VerticalStackLayout>
+             Title="Student Profile">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" BackgroundColor="#F5F5F5">
+        <!-- Top Navigation and Actions -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto" Margin="0,0,0,20">
+            <ImageButton Grid.Column="0" 
+                         Source="back_icon.png" 
+                         WidthRequest="40" 
+                         HeightRequest="40" 
+                         Clicked="OnBackClicked"/>
+            
+            <Label Grid.Column="1" 
+                   Text="Profile" 
+                   FontSize="20" 
+                   FontAttributes="Bold" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"/>
+            
+            <ImageButton Grid.Column="2" 
+                         Source="bell_icon.png" 
+                         WidthRequest="40" 
+                         HeightRequest="40" 
+                         Margin="0,0,10,0"
+                         Clicked="OnNotificationClicked"/>
+            
+            <ImageButton Grid.Column="3" 
+                         Source="settings_icon.png" 
+                         WidthRequest="40" 
+                         HeightRequest="40" 
+                         Clicked="OnSettingsClicked"/>
+        </Grid>
+
+        <!-- Profile Content -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="15">
+                <!-- Profile Picture and Basic Info -->
+                <Grid ColumnDefinitions="Auto,*" Margin="0,0,0,20">
+                    <Border Grid.Column="0" 
+                            WidthRequest="120" 
+                            HeightRequest="120" 
+                            StrokeShape="RoundRectangle 60"
+                            Margin="0,0,20,0">
+                        <Image x:Name="ProfileImage" 
+                               Source="default_profile.png" 
+                               Aspect="AspectFill"/>
+                    </Border>
+
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                        <Label x:Name="NameLabel" 
+                               Text="John Doe" 
+                               FontSize="22" 
+                               FontAttributes="Bold"/>
+                        <Label x:Name="StudentIDLabel" 
+                               Text="Student ID: 6420xxxx" 
+                               TextColor="Gray" 
+                               FontSize="16"/>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- Student Details -->
+                <Frame BorderColor="LightGray" Padding="15" Margin="0,10">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,*">
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="Current Credits" FontSize="14" TextColor="Gray"/>
+                                <Label x:Name="CurrentCreditsLabel" 
+                                       Text="15/22" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" HorizontalOptions="End">
+                                <Label Text="Remaining Credits" FontSize="14" TextColor="Gray"/>
+                                <Label x:Name="RemainingCreditsLabel" 
+                                       Text="7" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Contact Information -->
+                <Frame BorderColor="LightGray" Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Contact Information" FontSize="16" FontAttributes="Bold" Margin="0,0,0,10"/>
+                        
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="email_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label x:Name="EmailLabel" 
+                                   Text="john.doe@example.com" 
+                                   FontSize="16"/>
+                        </StackLayout>
+                        
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Image Source="phone_icon.png" WidthRequest="24" HeightRequest="24"/>
+                            <Label x:Name="PhoneLabel" 
+                                   Text="+66 XX-XXX-XXXX" 
+                                   FontSize="16"/>
+                        </StackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bottom Navigation -->
+        <Grid Grid.Row="2" ColumnDefinitions="*,*,*" Margin="0,20,0,0">
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
+                <ImageButton Source="schedule_icon.png" 
+                             WidthRequest="40" 
+                             HeightRequest="40" 
+                             Clicked="OnScheduleClicked"/>
+                <Label Text="Schedule" FontSize="12" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
+                <ImageButton Source="registration_icon.png" 
+                             WidthRequest="40" 
+                             HeightRequest="40" 
+                             Clicked="OnViewRegistrationClicked"/>
+                <Label Text="Registration" FontSize="12" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
+                <ImageButton Source="home_icon.png" 
+                             WidthRequest="40" 
+                             HeightRequest="40" 
+                             Clicked="OnHomeClicked"/>
+                <Label Text="Home" FontSize="12" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>

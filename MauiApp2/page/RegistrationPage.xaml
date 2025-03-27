@@ -1,32 +1,152 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp2.page"
              x:Class="MauiApp2.page.RegistrationPage"
-             Title="Registration">
-    <VerticalStackLayout Padding="20">
-        <Label Text="Registered Courses" FontSize="24" HorizontalOptions="Center"/>
-        <CollectionView x:Name="RegisteredCoursesView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Text="{Binding CourseName}" FontSize="18"/>
-                        <Button Text="Drop" Clicked="OnDropCourseClicked"/>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+             Title="Course Registration">
+    <Grid RowDefinitions="Auto,Auto,*" Padding="20" BackgroundColor="#F5F5F5">
+        <!-- Top Navigation -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,10">
+            <ImageButton Grid.Column="0" 
+                         Source="back_icon.png" 
+                         WidthRequest="40" 
+                         HeightRequest="40" 
+                         Clicked="OnBackClicked"/>
+            
+            <Label Grid.Column="1" 
+                   Text="Course Registration" 
+                   FontSize="20" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center"/>
+            
+            <ImageButton Grid.Column="2" 
+                         Source="info_icon.png" 
+                         WidthRequest="40" 
+                         HeightRequest="40" 
+                         Clicked="OnInfoClicked"/>
+        </Grid>
 
-        <Entry x:Name="CourseSearchEntry" Placeholder="Search Course"/>
-        <Button Text="Search" Clicked="OnSearchClicked"/>
+        <!-- Search and Filter Section -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+            <SearchBar Grid.Column="0" 
+                       x:Name="CourseSearchEntry" 
+                       Placeholder="Search Courses" 
+                       SearchButtonPressed="OnSearchClicked"/>
+            
+            <Button Grid.Column="1" 
+                    Text="Filters" 
+                    BackgroundColor="White" 
+                    TextColor="Black" 
+                    Clicked="OnFilterClicked"/>
+        </Grid>
 
-        <CollectionView x:Name="SearchResultsView">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Text="{Binding CourseName}" FontSize="18"/>
-                        <Button Text="Register" Clicked="OnRegisterClicked"/>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+        <!-- Scrollable Content -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout>
+                <!-- Registered Courses Section -->
+                <Label Text="Registered Courses" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       Margin="0,0,0,10"/>
+                
+                <CollectionView x:Name="RegisteredCoursesView"
+                                ItemsSource="{Binding RegisteredCourses}"
+                                SelectionMode="None"
+                                HeightRequest="300">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="local:CourseDisplay">
+                            <Frame BorderColor="LightGray" 
+                                   Margin="0,5" 
+                                   Padding="15">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <VerticalStackLayout Grid.Column="0">
+                                        <Label Text="{Binding CourseName}" 
+                                               FontSize="16" 
+                                               FontAttributes="Bold"/>
+                                        <Label Text="{Binding CourseCode}" 
+                                               TextColor="Gray"/>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Credits: " TextColor="Gray"/>
+                                                    <Span Text="{Binding Credits}" TextColor="Black"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </VerticalStackLayout>
+                                    
+                                    <Button Grid.Column="1" 
+                                            Text="Drop" 
+                                            BackgroundColor="Red" 
+                                            TextColor="White"
+                                            CommandParameter="{Binding .}"
+                                            Clicked="OnDropCourseClicked"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    
+                    <CollectionView.EmptyView>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="No courses registered" 
+                                   HorizontalOptions="Center" 
+                                   TextColor="Gray"/>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+                <!-- Available Courses Section -->
+                <Label Text="Available Courses" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       Margin="0,15,0,10"/>
+                
+                <CollectionView x:Name="SearchResultsView"
+                                ItemsSource="{Binding SearchResults}"
+                                SelectionMode="None"
+                                HeightRequest="300">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="local:CourseDisplay">
+                            <Frame BorderColor="LightGray" 
+                                   Margin="0,5" 
+                                   Padding="15">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <VerticalStackLayout Grid.Column="0">
+                                        <Label Text="{Binding CourseName}" 
+                                               FontSize="16" 
+                                               FontAttributes="Bold"/>
+                                        <Label Text="{Binding CourseCode}" 
+                                               TextColor="Gray"/>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Credits: " TextColor="Gray"/>
+                                                    <Span Text="{Binding Credits}" TextColor="Black"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </VerticalStackLayout>
+                                    
+                                    <Button Grid.Column="1" 
+                                            Text="Register" 
+                                            BackgroundColor="Green" 
+                                            TextColor="White"
+                                            CommandParameter="{Binding .}"
+                                            Clicked="OnRegisterClicked"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    
+                    <CollectionView.EmptyView>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Text="No courses found" 
+                                   HorizontalOptions="Center" 
+                                   TextColor="Gray"/>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

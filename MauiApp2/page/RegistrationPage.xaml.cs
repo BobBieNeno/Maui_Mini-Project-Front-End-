@@ -7,22 +7,40 @@ namespace MauiApp2.page
 {
     public partial class RegistrationPage : ContentPage
     {
-        private ObservableCollection<Course> RegisteredCourses = new();
-        private ObservableCollection<Course> SearchResults = new();
+        public ObservableCollection<CourseDisplay> RegisteredCourses { get; set; }
+        public ObservableCollection<CourseDisplay> SearchResults { get; set; }
 
         public RegistrationPage(string email)
         {
             InitializeComponent();
+            InitializeCollections();
             LoadRegisteredCourses(email);
+            BindingContext = this;
+        }
+
+        private void InitializeCollections()
+        {
+            RegisteredCourses = new ObservableCollection<CourseDisplay>();
+            SearchResults = new ObservableCollection<CourseDisplay>();
         }
 
         private void LoadRegisteredCourses(string email)
         {
-            // Mock registered courses
-            RegisteredCourses.Add(new Course { CourseName = "Mathematics 101" });
-            RegisteredCourses.Add(new Course { CourseName = "Computer Science 102" });
-
-            RegisteredCoursesView.ItemsSource = RegisteredCourses;
+            // Mock registered courses with more details
+            RegisteredCourses.Add(new CourseDisplay 
+            { 
+                CourseName = "Mathematics 101", 
+                CourseCode = "MATH101",
+                Credits = "3",
+                Instructor = "Dr. Smith"
+            });
+            RegisteredCourses.Add(new CourseDisplay 
+            { 
+                CourseName = "Computer Science 102", 
+                CourseCode = "CS102",
+                Credits = "4",
+                Instructor = "Prof. Johnson"
+            });
         }
 
         private void OnSearchClicked(object sender, EventArgs e)
@@ -31,43 +49,97 @@ namespace MauiApp2.page
             
             var allCourses = new[]
             {
-                new Course { CourseName = "Mathematics 101" },
-                new Course { CourseName = "Physics 201" },
-                new Course { CourseName = "Computer Science 102" }
+                new CourseDisplay 
+                { 
+                    CourseName = "Mathematics 101", 
+                    CourseCode = "MATH101",
+                    Credits = "3",
+                    Instructor = "Dr. Smith"
+                },
+                new CourseDisplay 
+                { 
+                    CourseName = "Physics 201", 
+                    CourseCode = "PHYS201",
+                    Credits = "4",
+                    Instructor = "Dr. Williams"
+                },
+                new CourseDisplay 
+                { 
+                    CourseName = "Computer Science 102", 
+                    CourseCode = "CS102",
+                    Credits = "4",
+                    Instructor = "Prof. Johnson"
+                }
             };
 
             SearchResults.Clear();
-            foreach (var course in allCourses.Where(c => c.CourseName.ToLower().Contains(query)))
+            foreach (var course in allCourses.Where(c => 
+                c.CourseName.ToLower().Contains(query) || 
+                c.CourseCode.ToLower().Contains(query)))
             {
                 SearchResults.Add(course);
             }
-
-            SearchResultsView.ItemsSource = SearchResults;
         }
 
         private void OnRegisterClicked(object sender, EventArgs e)
         {
-            if (sender is Button btn && btn.BindingContext is Course course)
+            if (sender is Button btn && btn.CommandParameter is CourseDisplay course)
             {
-                RegisteredCourses.Add(course);
-                RegisteredCoursesView.ItemsSource = null;
-                RegisteredCoursesView.ItemsSource = RegisteredCourses;
+                // Check for duplicate registration
+                if (!RegisteredCourses.Any(c => c.CourseCode == course.CourseCode))
+                {
+                    RegisteredCourses.Add(course);
+                    SearchResults.Remove(course);
+                }
+                else
+                {
+                    // Optional: Show an alert that the course is already registered
+                    DisplayAlert("Registration", "You are already registered for this course.", "OK");
+                }
             }
         }
 
-        private void OnDropCourseClicked(object sender, EventArgs e)
+       private void OnDropCourseClicked(object sender, EventArgs e)
+{
+    if (sender is Button btn && btn.CommandParameter is CourseDisplay course)
+    {
+        RegisteredCourses.Remove(course);
+
+        // ตรวจสอบว่าคอร์สที่ถูกลบเคยอยู่ในผลลัพธ์การค้นหาหรือไม่
+        if (SearchResults.Any(c => c.CourseCode == course.CourseCode))
         {
-            if (sender is Button btn && btn.BindingContext is Course course)
-            {
-                RegisteredCourses.Remove(course);
-                RegisteredCoursesView.ItemsSource = null;
-                RegisteredCoursesView.ItemsSource = RegisteredCourses;
-            }
+            SearchResults.Add(course);
+        }
+    }
+}
+
+
+        private async void OnBackClicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+
+        private void OnFilterClicked(object sender, EventArgs e)
+        {
+            // Implement filter functionality
+            DisplayAlert("Filters", "Filter functionality coming soon!", "OK");
+        }
+
+        private void OnInfoClicked(object sender, EventArgs e)
+        {
+            // Show registration information
+            DisplayAlert("Registration Info", 
+                "- Maximum 6 courses per semester\n" +
+                "- Minimum 12 credits required\n" +
+                "- Add/Drop period ends soon", "Close");
         }
     }
 
-    public class Course
+    public class CourseDisplay
     {
         public string CourseName { get; set; }
+        public string CourseCode { get; set; }
+        public string Credits { get; set; }
+        public string Instructor { get; set; }
     }
 }
