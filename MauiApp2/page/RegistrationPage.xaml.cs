@@ -145,7 +145,7 @@ namespace MauiApp2.page
         // ถ้าต้องการเพิ่มกลับเข้า SearchResults
         // if (SearchResults.Any(c => c.CourseCode == course.CourseCode))
         // {
-        //     SearchResults.Add(course);
+            SearchResults.Add(course);
         // }
     }
     }
