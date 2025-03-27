@@ -43,7 +43,7 @@
                             StrokeShape="RoundRectangle 60"
                             Margin="0,0,20,0">
                         <Image x:Name="ProfileImage" 
-                               Source="default_profile.png" 
+                               Source="https://img.freepik.com/free-vector/user-blue-gradient_78370-4692.jpg?t=st=1743005131~exp=1743008731~hmac=49765776c9bf5827f70306c68dac5f0069776637c59d17471d0a8ead1aa3efb4" 
                                Aspect="AspectFill"/>
                     </Border>
 
